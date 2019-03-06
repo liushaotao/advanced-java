@@ -1,22 +1,22 @@
 # 互联网 Java 工程师进阶知识完全扫盲
+[![license](https://badgen.net/badge/license/Attribution-NonCommercial%204.0/green)](https://github.com/doocs/advanced-java/blob/master/LICENSE)
+[![original](https://badgen.net/badge/original/%E4%B8%AD%E5%8D%8E%E7%9F%B3%E6%9D%89/orange)](https://github.com/doocs/advanced-java)
+[![open-source-organization](https://badgen.net/badge/organization/join%20us/pink)](https://github.com/doocs/intro)
+[![stars](https://badgen.net/github/stars/doocs/advanced-java)](https://github.com/doocs/advanced-java/stargazers)
+[![forks](https://badgen.net/github/forks/doocs/advanced-java)](https://github.com/doocs/advanced-java/network/members)
+[![help-wanted](https://badgen.net/github/label-issues/doocs/advanced-java/help%20wanted/open)](https://github.com/doocs/advanced-java/labels/help%20wanted)
+[![issues](https://badgen.net/github/open-issues/doocs/advanced-java)](https://github.com/doocs/advanced-java/issues)
+[![PRs Welcome](https://badgen.net/badge/PRs/welcome/green)](http://makeapullrequest.com)
 
-[![license](https://img.shields.io/badge/license-Attribution--NonCommercial%204.0%20-brightgreen.svg)](https://github.com/doocs/advanced-java/blob/master/LICENSE)
-[![original](https://img.shields.io/badge/original-%E4%B8%AD%E5%8D%8E%E7%9F%B3%E6%9D%89-orange.svg)](https://github.com/doocs/advanced-java)
-[![stars](https://img.shields.io/github/stars/doocs/advanced-java.svg)](https://github.com/doocs/advanced-java/stargazers)
-[![forks](https://img.shields.io/github/forks/doocs/advanced-java.svg)](https://github.com/doocs/advanced-java/network/members)
-[![issues](https://img.shields.io/github/issues/doocs/advanced-java.svg)](https://github.com/doocs/advanced-java/issues)
-[![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](http://makeapullrequest.com)
+本系列知识出自中华石杉，内容涵盖[高并发](#高并发架构)、[分布式](#分布式系统)、[高可用](#高可用架构)、[微服务](#微服务架构)等领域知识。我对这部分知识做了一个[系统的整理](https://github.com/doocs/advanced-java/issues/1)，方便学习查阅。配合《大型网站技术架构——李智慧》食用，[效果更佳](https://doocs.github.io/advanced-java/#/offer)。
 
-本系列知识出自中华石杉，我对这部分知识做了一个系统的整理，方便学习查阅。By the way，微信公众号**石杉的架构笔记**（id:shishan100）有其它很多架构知识，墙裂推荐~
-
-一点小建议：学习本系列知识之前，如果你完全没接触过 `MQ`、`ES`、`Redis`、`Dubbo`、`Hystrix` 等，那么我建议你可以先在网上搜一下每一块知识的快速入门，跟着入门 Demo [玩](https://doocs.github.io/advanced-java/#/offer)一下，然后再开始每一块知识的学习，这样效果更好噢~
+学习之前，先来看看 [Issues 讨论区](https://github.com/doocs/advanced-java/issues/9#issue-394275038)的技术面试官是怎么说的吧。
 
 ## 高并发架构
-
 ### [消息队列](/docs/high-concurrency/mq-interview.md)
 - [为什么使用消息队列？消息队列有什么优点和缺点？Kafka、ActiveMQ、RabbitMQ、RocketMQ 都有什么优点和缺点？](/docs/high-concurrency/why-mq.md)
 - [如何保证消息队列的高可用？](/docs/high-concurrency/how-to-ensure-high-availability-of-message-queues.md)
-- [如何保证消息不被重复消费？（如何保证消息消费时的幂等性）](/docs/high-concurrency/how-to-ensure-that-messages-are-not-repeatedly-consumed.md)
+- [如何保证消息不被重复消费？（如何保证消息消费的幂等性）](/docs/high-concurrency/how-to-ensure-that-messages-are-not-repeatedly-consumed.md)
 - [如何保证消息的可靠性传输？（如何处理消息丢失的问题）](/docs/high-concurrency/how-to-ensure-the-reliable-transmission-of-messages.md)
 - [如何保证消息的顺序性？](/docs/high-concurrency/how-to-ensure-the-order-of-messages.md)
 - [如何解决消息队列的延时以及过期失效问题？消息队列满了以后该怎么处理？有几百万消息持续积压几小时，说说怎么解决？](/docs/high-concurrency/mq-time-delay-and-expired-failure.md)
@@ -54,7 +54,6 @@
 - [如何设计一个高并发系统？](/docs/high-concurrency/high-concurrency-design.md)
 
 ## 分布式系统
-
 ### [面试连环炮](/docs/distributed-system/distributed-system-interview.md)
 ### 系统拆分
 - [为什么要进行系统拆分？如何进行系统拆分？拆分后不用 Dubbo 可以吗？](/docs/distributed-system/why-dubbo.md)
@@ -90,6 +89,7 @@
 - [基于本地缓存的 fallback 降级机制](/docs/high-availability/hystrix-fallback.md)
 - [深入 Hystrix 断路器执行原理](/docs/high-availability/hystrix-circuit-breaker.md)
 - [深入 Hystrix 线程池隔离与接口限流](/docs/high-availability/hystrix-thread-pool-current-limiting.md)
+- [基于 timeout 机制为服务接口调用超时提供安全保护](/docs/high-availability/hystrix-timeout.md)
 
 ### 高可用系统
 - 如何设计一个高可用系统？
@@ -103,3 +103,17 @@
 
 ### 降级
 - 如何进行降级？
+
+## 微服务架构
+- [微服务架构整个章节内容属额外新增，会陆续补充完善]()
+- [关于微服务架构的描述](/docs/micro-services/microservices-introduction.md)
+
+### Spring Cloud 微服务架构
+- 什么是微服务？微服务之间是如何独立通讯的？
+- Spring Cloud 和 Dubbo 有哪些区别？
+- Spring Boot 和 Spring Cloud，谈谈你对它们的理解？
+- 什么是服务熔断？什么是服务降级？
+- 微服务的优缺点分别是什么？说一下你在项目开发中碰到的坑？
+- 你所知道的微服务技术栈都有哪些？
+- Eureka 和 Zookeeper 都可以提供服务注册与发现的功能，它们有什么区别？
+- ......

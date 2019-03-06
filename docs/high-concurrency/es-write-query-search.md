@@ -13,7 +13,7 @@ es 写入数据的工作原理是什么啊？es 查询数据的工作原理是�
 - 实际的 node 上的 `primary shard` 处理请求，然后将数据同步到 `replica node`。
 - `coordinating node` 如果发现 `primary node` 和所有 `replica node` 都搞定之后，就返回响应结果给客户端。
 
-![es-write](/img/es-write.png)
+![es-write](/images/es-write.png)
 
 ### es 读数据过程
 可以通过 `doc id` 来查询，会根据 `doc id` 进行 hash，判断出来当时把 `doc id` 分配到了哪个 shard 上面去，从那个 shard 去查询。
@@ -41,7 +41,7 @@ j2ee特别牛
 
 ### 写数据底层原理
 
-![es-write-detail](/img/es-write-detail.png)
+![es-write-detail](/images/es-write-detail.png)
 
 先写入内存 buffer，在 buffer 里的时候数据是搜索不到的；同时将数据写入 translog 日志文件。
 
@@ -117,3 +117,8 @@ buffer 每次 refresh 一次，就会产生一个 `segment file`，所以默认�
 另外，实用的倒排索引还可以记录更多的信息，比如文档频率信息，表示在文档集合中有多少个文档包含某个单词。
 
 那么，有了倒排索引，搜索引擎可以很方便地响应用户的查询。比如用户输入查询 `Facebook`，搜索系统查找倒排索引，从中读出包含这个单词的文档，这些文档就是提供给用户的搜索结果。
+
+要注意倒排索引的两个重要细节：
+
+- 倒排索引中的所有词项对应一个或多个文档；
+- 倒排索引中的词项**根据字典顺序升序排列**。

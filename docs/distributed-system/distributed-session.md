@@ -2,7 +2,7 @@
 集群部署时的分布式 session 如何实现？
 
 ## 面试官心理分析
-面试官问了你一堆 dubbo 是怎么玩儿的，你会玩儿 dubbo 就可以把单块系统弄成分布式系统，然后分布式之后接踵而来的就是一堆问题，最大的问题就是**分布式事务**、**接口幂等性**、**分布式锁**，还有最后一个就是**分布式session**。
+面试官问了你一堆 dubbo 是怎么玩儿的，你会玩儿 dubbo 就可以把单块系统弄成分布式系统，然后分布式之后接踵而来的就是一堆问题，最大的问题就是**分布式事务**、**接口幂等性**、**分布式锁**，还有最后一个就是**分布式 session**。
 
 当然了，分布式系统中的问题何止这么一点，非常之多，复杂度很高，但是这里就是说下常见的几个，也是面试的时候常问的几个。
 
@@ -15,10 +15,14 @@ session 是啥？浏览器有个 cookie，在一段时间内这个 cookie 都存
 
 单块系统的时候这么玩儿 session 没问题，但是你要是分布式系统呢，那么多的服务，session 状态在哪儿维护啊？
 
-其实方法很多，但是常见常用的是两种：
+其实方法很多，但是常见常用的是以下几种：
+
+### 完全不用 session
+
+使用 JWT Token 储存用户身份，然后再从数据库或者 cache 中获取其他的信息。这样无论请求分配到哪个服务器都无所谓。
 
 ### tomcat + redis
-这个其实还挺方便的，就是使用 session 的代码跟以前一样，还是基于 tomcat 原生的 session 支持即可，然后就是用一个叫做 `Tomcat  RedisSessionManager` 的东西，让所有我们部署得  tomcat 都将 session 数据存储到 redis 即可。
+这个其实还挺方便的，就是使用 session 的代码，跟以前一样，还是基于 tomcat 原生的 session 支持即可，然后就是用一个叫做 `Tomcat  RedisSessionManager` 的东西，让所有我们部署的 tomcat 都将 session 数据存储到 redis 即可。
 
 在 tomcat 的配置文件中配置：
 
@@ -127,4 +131,4 @@ public class TestController {
 
 上面的代码就是 ok 的，给 sping session 配置基于 redis 来存储 session 数据，然后配置了一个 spring session 的过滤器，这样的话，session 相关操作都会交给 spring session 来管了。接着在代码中，就用原生的 session 操作，就是直接基于 spring sesion 从 redis 中获取数据了。
 
-实现分布式的会话，有很多种很多种方式，我说的只不过比较常见的两种方式，tomcat + redis 早期比较常用，但是会重耦合到 tomcat 中；近些年，通过 spring session 来实现。
+实现分布式的会话有很多种方式，我说的只不过是比较常见的几种方式，tomcat + redis 早期比较常用，但是会重耦合到 tomcat 中；近些年，通过 spring session 来实现。
